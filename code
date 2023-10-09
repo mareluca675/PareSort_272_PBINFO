@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ifstream fin("paresort.in");
+    ofstream fout("paresort.out");
+    
+    long long n, i, j, k, x[100001], y[100001], ok = 0, nrpare = 0;
+    
+    fin >> n;
+    
+    k = 1;
+    
+    for(i = 1; i <= n; i++)
+    {
+        fin >> x[i];
+        
+        if(x[i] % 2 == 0)
+        {
+            y[k] = x[i];
+            nrpare++;
+            ok = 1;
+            k++;
+        }
+    }
+    
+    if(ok == 0)
+    {
+        fout << "nu exista";
+    }
+    else
+    {
+    for(i = 1; i <= k - 1; i++)
+    {
+        for(j = i + 1 ; j <= k - 1; j ++)
+        {
+            if(y[i] > y[j])
+            {
+                int aux = y[j];
+                y[j] = y[i];
+                y[i] = aux;
+            }
+        }
+    }
+    
+    fout << nrpare << '\n';
+    
+    for(i = 1; i <= k - 1; i++)
+    {
+        fout << y[i] << " ";   
+    }
+    
+    }
+    return 0;
+}
